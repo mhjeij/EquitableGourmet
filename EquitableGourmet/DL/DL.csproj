@@ -1,0 +1,157 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{9E5958F3-4675-4B3A-B153-2F71FDB4AFA7}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>DL</RootNamespace>
+    <AssemblyName>DL</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.Practices.EnterpriseLibrary.Common, Version=4.1.0.0, Culture=neutral, PublicKeyToken=e44a2bc38ed2c13c, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\Desktop\Ref\Microsoft.Practices.EnterpriseLibrary.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.EnterpriseLibrary.Configuration.Design">
+      <HintPath>..\..\..\..\..\Desktop\Ref\Microsoft.Practices.EnterpriseLibrary.Configuration.Design.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.EnterpriseLibrary.Data, Version=3.1.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\Desktop\Ref\Microsoft.Practices.EnterpriseLibrary.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.EnterpriseLibrary.Data.Configuration.Design">
+      <HintPath>..\..\..\..\..\Desktop\Ref\Microsoft.Practices.EnterpriseLibrary.Data.Configuration.Design.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.ObjectBuilder">
+      <HintPath>..\..\..\..\..\Desktop\Ref\Microsoft.Practices.ObjectBuilder.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Account.cs" />
+    <Compile Include="AccountBase.cs" />
+    <Compile Include="AccountClass.cs" />
+    <Compile Include="AccountClassBase.cs" />
+    <Compile Include="AccountIndustry.cs" />
+    <Compile Include="AccountIndustryBase.cs" />
+    <Compile Include="AccountStatus.cs" />
+    <Compile Include="AccountStatusBase.cs" />
+    <Compile Include="AccountTitle.cs" />
+    <Compile Include="AccountTitleBase.cs" />
+    <Compile Include="AccountType.cs" />
+    <Compile Include="AccountTypeBase.cs" />
+    <Compile Include="Address.cs" />
+    <Compile Include="AddressBase.cs" />
+    <Compile Include="AddressType.cs" />
+    <Compile Include="AddressTypeBase.cs" />
+    <Compile Include="AspNetRoles.cs" />
+    <Compile Include="AspNetRolesBase.cs" />
+    <Compile Include="AspNetUserClaims.cs" />
+    <Compile Include="AspNetUserClaimsBase.cs" />
+    <Compile Include="AspNetUserLogins.cs" />
+    <Compile Include="AspNetUserLoginsBase.cs" />
+    <Compile Include="AspNetUserRoles.cs" />
+    <Compile Include="AspNetUserRolesBase.cs" />
+    <Compile Include="AspNetUsers.cs" />
+    <Compile Include="AspNetUsersBase.cs" />
+    <Compile Include="City.cs" />
+    <Compile Include="CityBase.cs" />
+    <Compile Include="Company.cs" />
+    <Compile Include="CompanyBase.cs" />
+    <Compile Include="ControlType.cs" />
+    <Compile Include="ControlTypeBase.cs" />
+    <Compile Include="Country.cs" />
+    <Compile Include="CountryBase.cs" />
+    <Compile Include="District.cs" />
+    <Compile Include="DistrictBase.cs" />
+    <Compile Include="EOI.cs" />
+    <Compile Include="EOIBase.cs" />
+    <Compile Include="Favourite.cs" />
+    <Compile Include="FavouriteBase.cs" />
+    <Compile Include="Ingredient.cs" />
+    <Compile Include="IngredientBase.cs" />
+    <Compile Include="InterestLevel.cs" />
+    <Compile Include="InterestLevelBase.cs" />
+    <Compile Include="Job.cs" />
+    <Compile Include="JobBase.cs" />
+    <Compile Include="JobStatus.cs" />
+    <Compile Include="JobStatusBase.cs" />
+    <Compile Include="Order.cs" />
+    <Compile Include="OrderBase.cs" />
+    <Compile Include="OrderDetail.cs" />
+    <Compile Include="OrderDetailBase.cs" />
+    <Compile Include="OrderNote.cs" />
+    <Compile Include="OrderNoteBase.cs" />
+    <Compile Include="OrderStatus.cs" />
+    <Compile Include="OrderStatusBase.cs" />
+    <Compile Include="OrderTemplate.cs" />
+    <Compile Include="OrderTemplateBase.cs" />
+    <Compile Include="PriceHistory.cs" />
+    <Compile Include="PriceHistoryBase.cs" />
+    <Compile Include="Product.cs" />
+    <Compile Include="ProductBase.cs" />
+    <Compile Include="ProductBrand.cs" />
+    <Compile Include="ProductBrandBase.cs" />
+    <Compile Include="ProductCategory.cs" />
+    <Compile Include="ProductCategoryBase.cs" />
+    <Compile Include="Product_Ingredient.cs" />
+    <Compile Include="Product_IngredientBase.cs" />
+    <Compile Include="Promotion.cs" />
+    <Compile Include="PromotionBase.cs" />
+    <Compile Include="PromotionDetail.cs" />
+    <Compile Include="PromotionDetailBase.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="User.cs" />
+    <Compile Include="UserBase.cs" />
+    <Compile Include="UserPermissions.cs" />
+    <Compile Include="UserPermissionsBase.cs" />
+    <Compile Include="UserStatus.cs" />
+    <Compile Include="UserStatusBase.cs" />
+    <Compile Include="UserType.cs" />
+    <Compile Include="UserTypeBase.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="References Files\Microsoft.Practices.EnterpriseLibrary.Common.dll" />
+    <Content Include="References Files\Microsoft.Practices.EnterpriseLibrary.Configuration.Design.dll" />
+    <Content Include="References Files\Microsoft.Practices.EnterpriseLibrary.Data.Configuration.Design.dll" />
+    <Content Include="References Files\Microsoft.Practices.EnterpriseLibrary.Data.dll" />
+    <Content Include="References Files\Microsoft.Practices.ObjectBuilder.dll" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
