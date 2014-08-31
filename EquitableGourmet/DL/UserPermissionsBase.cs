@@ -35,18 +35,14 @@ using System.IO;
 using Microsoft.Practices.EnterpriseLibrary.Data;
 using System.Data.Common;
 
-namespace DL
+namespace EquitableGourmet
 {
 	public abstract class UserPermissionsBase
 	{
 		#region < VARIABLES >
 		private int _UserPermissionsID;
-		private string _ControlName;
-		private string _PageName;
-		private int _ControlTypeID;
+		private int _PageID;
 		private int _UserTypeID;
-		private bool _IsVisible;
-		private bool _IsEnabled;
 		private bool _Del;
 		private bool _isNew;
 		#endregion
@@ -55,12 +51,8 @@ namespace DL
 		protected UserPermissionsBase()
 		{
 			_UserPermissionsID = 0;
-			_ControlName = string.Empty;
-			_PageName = string.Empty;
-			_ControlTypeID = 0;
+			_PageID = 0;
 			_UserTypeID = 0;
-			_IsVisible = false;
-			_IsEnabled = false;
 			_Del = false;
 		}
 		
@@ -69,15 +61,11 @@ namespace DL
 			_UserPermissionsID = UserPermissionsID;
 		}
 	
-		protected UserPermissionsBase(int UserPermissionsID, string ControlName, string PageName, int ControlTypeID, int UserTypeID, bool IsVisible, bool IsEnabled, bool Del) : this()
+		protected UserPermissionsBase(int UserPermissionsID, int PageID, int UserTypeID, bool Del) : this()
 		{
 			_UserPermissionsID = UserPermissionsID;
-			_ControlName = ControlName;
-			_PageName = PageName;
-			_ControlTypeID = ControlTypeID;
+			_PageID = PageID;
 			_UserTypeID = UserTypeID;
-			_IsVisible = IsVisible;
-			_IsEnabled = IsEnabled;
 			_Del = Del;
 		}
 
@@ -85,16 +73,16 @@ namespace DL
 		
 		#region < Metodos para Obtención de Detalles >
 
-		public static DataTable GetByControlType(int ControlTypeID)
+		public static DataTable GetByPage(int PageID)
 		{
 			Database db = DatabaseFactory.CreateDatabase();
-            string sqlCommand = "Select * From UserPermissions Where ControlTypeID = @ControlTypeID";
+            string sqlCommand = "Select * From UserPermissions Where PageID = @PageID";
             DbCommand dbCommandWrapper = db.GetSqlStringCommand(sqlCommand);
-			db.AddInParameter(dbCommandWrapper, "@ControlTypeID", DbType.Int32, ControlTypeID);
+			db.AddInParameter(dbCommandWrapper, "@PageID", DbType.Int32, PageID);
 
 			DataTable t = db.ExecuteDataSet(dbCommandWrapper).Tables[0];
 			
-			t.Columns["ControlTypeID"].DefaultValue = ControlTypeID;
+			t.Columns["PageID"].DefaultValue = PageID;
 
             return t;
 		}
@@ -123,40 +111,16 @@ namespace DL
 			set	{ _UserPermissionsID = value; }
 		}
 		
-		public string ControlName
+		public int PageID
 		{
-			get	{ return _ControlName; }
-			set	{ _ControlName = value; }
-		}
-		
-		public string PageName
-		{
-			get	{ return _PageName; }
-			set	{ _PageName = value; }
-		}
-		
-		public int ControlTypeID
-		{
-			get	{ return _ControlTypeID; }
-			set	{ _ControlTypeID = value; }
+			get	{ return _PageID; }
+			set	{ _PageID = value; }
 		}
 		
 		public int UserTypeID
 		{
 			get	{ return _UserTypeID; }
 			set	{ _UserTypeID = value; }
-		}
-		
-		public bool IsVisible
-		{
-			get	{ return _IsVisible; }
-			set	{ _IsVisible = value; }
-		}
-		
-		public bool IsEnabled
-		{
-			get	{ return _IsEnabled; }
-			set	{ _IsEnabled = value; }
 		}
 		
 		public bool Del
@@ -219,24 +183,16 @@ namespace DL
 			
 			#region Parametros de InsertCommand
 			db.AddOutParameter(da.InsertCommand, "@UserPermissionsID", DbType.Int32, 4);
-			db.AddInParameter(da.InsertCommand, "@ControlName", DbType.String, "ControlName", DataRowVersion.Default);
-			db.AddInParameter(da.InsertCommand, "@PageName", DbType.String, "PageName", DataRowVersion.Default);
-			db.AddInParameter(da.InsertCommand, "@ControlTypeID", DbType.Int32, "ControlTypeID", DataRowVersion.Default);
+			db.AddInParameter(da.InsertCommand, "@PageID", DbType.Int32, "PageID", DataRowVersion.Default);
 			db.AddInParameter(da.InsertCommand, "@UserTypeID", DbType.Int32, "UserTypeID", DataRowVersion.Default);
-			db.AddInParameter(da.InsertCommand, "@IsVisible", DbType.Boolean, "IsVisible", DataRowVersion.Default);
-			db.AddInParameter(da.InsertCommand, "@IsEnabled", DbType.Boolean, "IsEnabled", DataRowVersion.Default);
 			db.AddInParameter(da.InsertCommand, "@Del", DbType.Boolean, "Del", DataRowVersion.Default);
 
 			#endregion
 			
 			#region Parametros de UpdateCommand
 			db.AddInParameter(da.UpdateCommand, "@UserPermissionsID", DbType.Int32, "UserPermissionsID", DataRowVersion.Default);
-			db.AddInParameter(da.UpdateCommand, "@ControlName", DbType.String, "ControlName", DataRowVersion.Default);
-			db.AddInParameter(da.UpdateCommand, "@PageName", DbType.String, "PageName", DataRowVersion.Default);
-			db.AddInParameter(da.UpdateCommand, "@ControlTypeID", DbType.Int32, "ControlTypeID", DataRowVersion.Default);
+			db.AddInParameter(da.UpdateCommand, "@PageID", DbType.Int32, "PageID", DataRowVersion.Default);
 			db.AddInParameter(da.UpdateCommand, "@UserTypeID", DbType.Int32, "UserTypeID", DataRowVersion.Default);
-			db.AddInParameter(da.UpdateCommand, "@IsVisible", DbType.Boolean, "IsVisible", DataRowVersion.Default);
-			db.AddInParameter(da.UpdateCommand, "@IsEnabled", DbType.Boolean, "IsEnabled", DataRowVersion.Default);
 			db.AddInParameter(da.UpdateCommand, "@Del", DbType.Boolean, "Del", DataRowVersion.Default);
 
 			#endregion
@@ -284,12 +240,8 @@ namespace DL
 			// Load member variables from datarow
 			DataRow row = ds.Tables[0].Rows[0];
 			_UserPermissionsID = (int)row["UserPermissionsID"];
-			_ControlName = row.IsNull("ControlName") ? string.Empty : (string)row["ControlName"];
-			_PageName = row.IsNull("PageName") ? string.Empty : (string)row["PageName"];
-			_ControlTypeID = row.IsNull("ControlTypeID") ? 0 : (int)row["ControlTypeID"];
+			_PageID = row.IsNull("PageID") ? 0 : (int)row["PageID"];
 			_UserTypeID = row.IsNull("UserTypeID") ? 0 : (int)row["UserTypeID"];
-			_IsVisible = row.IsNull("IsVisible") ? false : (bool)row["IsVisible"];
-			_IsEnabled = row.IsNull("IsEnabled") ? false : (bool)row["IsEnabled"];
 			_Del = row.IsNull("Del") ? false : (bool)row["Del"];
 		}
 
@@ -320,13 +272,9 @@ namespace DL
 
 			// Add parameters
 			db.AddOutParameter(dbCommandWrapper, "@UserPermissionsID", DbType.Int32, 4);
-			db.AddInParameter(dbCommandWrapper, "@ControlName", DbType.String, SetNullValue((_ControlName == string.Empty), _ControlName));
-			db.AddInParameter(dbCommandWrapper, "@PageName", DbType.String, SetNullValue((_PageName == string.Empty), _PageName));
-			db.AddInParameter(dbCommandWrapper, "@ControlTypeID", DbType.Int32, SetNullValue((_ControlTypeID == 0), _ControlTypeID));
+			db.AddInParameter(dbCommandWrapper, "@PageID", DbType.Int32, SetNullValue((_PageID == 0), _PageID));
 			db.AddInParameter(dbCommandWrapper, "@UserTypeID", DbType.Int32, SetNullValue((_UserTypeID == 0), _UserTypeID));
-			db.AddInParameter(dbCommandWrapper, "@IsVisible", DbType.Boolean, SetNullValue((_IsVisible == false), _IsVisible));
-			db.AddInParameter(dbCommandWrapper, "@IsEnabled", DbType.Boolean, SetNullValue((_IsEnabled == false), _IsEnabled));
-			db.AddInParameter(dbCommandWrapper, "@Del", DbType.Boolean, SetNullValue((_Del == false), _Del));
+            db.AddInParameter(dbCommandWrapper, "@Del", DbType.Boolean, SetNullValue((_Del == true), _Del));
 
 			db.ExecuteNonQuery(dbCommandWrapper);
 			
@@ -354,12 +302,8 @@ namespace DL
 
 			// Add parameters
 			db.AddInParameter(dbCommandWrapper, "@UserPermissionsID", DbType.Int32, _UserPermissionsID);
-			db.AddInParameter(dbCommandWrapper, "@ControlName", DbType.String, SetNullValue((_ControlName == string.Empty), _ControlName));
-			db.AddInParameter(dbCommandWrapper, "@PageName", DbType.String, SetNullValue((_PageName == string.Empty), _PageName));
-			db.AddInParameter(dbCommandWrapper, "@ControlTypeID", DbType.Int32, SetNullValue((_ControlTypeID == 0), _ControlTypeID));
+			db.AddInParameter(dbCommandWrapper, "@PageID", DbType.Int32, SetNullValue((_PageID == 0), _PageID));
 			db.AddInParameter(dbCommandWrapper, "@UserTypeID", DbType.Int32, SetNullValue((_UserTypeID == 0), _UserTypeID));
-			db.AddInParameter(dbCommandWrapper, "@IsVisible", DbType.Boolean, SetNullValue((_IsVisible == false), _IsVisible));
-			db.AddInParameter(dbCommandWrapper, "@IsEnabled", DbType.Boolean, SetNullValue((_IsEnabled == false), _IsEnabled));
 			db.AddInParameter(dbCommandWrapper, "@Del", DbType.Boolean, SetNullValue((_Del == false), _Del));
 
 			try

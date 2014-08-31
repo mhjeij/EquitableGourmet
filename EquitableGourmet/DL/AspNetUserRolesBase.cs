@@ -35,7 +35,7 @@ using System.IO;
 using Microsoft.Practices.EnterpriseLibrary.Data;
 using System.Data.Common;
 
-namespace DL
+namespace EquitableGourmet
 {
 	public abstract class AspNetUserRolesBase
 	{

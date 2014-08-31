@@ -35,7 +35,7 @@ using System.IO;
 using Microsoft.Practices.EnterpriseLibrary.Data;
 using System.Data.Common;
 
-namespace DL
+namespace EquitableGourmet
 {
 	public abstract class UserTypeBase
 	{
@@ -272,7 +272,7 @@ namespace DL
 			db.AddInParameter(dbCommandWrapper, "@IsBuyer", DbType.Boolean, SetNullValue((_IsBuyer == false), _IsBuyer));
 			db.AddInParameter(dbCommandWrapper, "@IsAdPlacer", DbType.Boolean, SetNullValue((_IsAdPlacer == false), _IsAdPlacer));
 			db.AddInParameter(dbCommandWrapper, "@IsJobPlacer", DbType.Boolean, SetNullValue((_IsJobPlacer == false), _IsJobPlacer));
-			db.AddInParameter(dbCommandWrapper, "@Del", DbType.Boolean, SetNullValue((_Del == false), _Del));
+            db.AddInParameter(dbCommandWrapper, "@Del", DbType.Boolean, SetNullValue((_Del == true), _Del));
 
 			db.ExecuteNonQuery(dbCommandWrapper);
 			

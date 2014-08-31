@@ -35,7 +35,7 @@ using System.IO;
 using Microsoft.Practices.EnterpriseLibrary.Data;
 using System.Data.Common;
 
-namespace DL
+namespace EquitableGourmet
 {
 	public abstract class JobBase
 	{
@@ -325,7 +325,7 @@ namespace DL
 			db.AddInParameter(dbCommandWrapper, "@CreatedBy", DbType.Int32, SetNullValue((_CreatedBy == 0), _CreatedBy));
 			db.AddInParameter(dbCommandWrapper, "@Description", DbType.String, SetNullValue((_Description == string.Empty), _Description));
 			db.AddInParameter(dbCommandWrapper, "@JobStatusID", DbType.Int32, SetNullValue((_JobStatusID == 0), _JobStatusID));
-			db.AddInParameter(dbCommandWrapper, "@Del", DbType.Boolean, SetNullValue((_Del == false), _Del));
+            db.AddInParameter(dbCommandWrapper, "@Del", DbType.Boolean, SetNullValue((_Del == true), _Del));
 
 			db.ExecuteNonQuery(dbCommandWrapper);
 			

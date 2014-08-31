@@ -35,7 +35,7 @@ using System.IO;
 using Microsoft.Practices.EnterpriseLibrary.Data;
 using System.Data.Common;
 
-namespace DL
+namespace EquitableGourmet
 {
 	public abstract class FavouriteBase
 	{
@@ -260,7 +260,7 @@ namespace DL
 			db.AddOutParameter(dbCommandWrapper, "@FavouriteID", DbType.Int32, 4);
 			db.AddInParameter(dbCommandWrapper, "@UserID", DbType.Int32, SetNullValue((_UserID == 0), _UserID));
 			db.AddInParameter(dbCommandWrapper, "@ProductID", DbType.Int32, SetNullValue((_ProductID == 0), _ProductID));
-			db.AddInParameter(dbCommandWrapper, "@Del", DbType.Boolean, SetNullValue((_Del == false), _Del));
+            db.AddInParameter(dbCommandWrapper, "@Del", DbType.Boolean, SetNullValue((_Del == true), _Del));
 
 			db.ExecuteNonQuery(dbCommandWrapper);
 			

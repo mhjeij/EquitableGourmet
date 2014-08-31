@@ -35,7 +35,7 @@ using System.IO;
 using Microsoft.Practices.EnterpriseLibrary.Data;
 using System.Data.Common;
 
-namespace DL
+namespace EquitableGourmet
 {
 	public abstract class EOIBase
 	{
@@ -300,7 +300,7 @@ namespace DL
 			db.AddInParameter(dbCommandWrapper, "@UserID", DbType.Int32, SetNullValue((_UserID == 0), _UserID));
 			db.AddInParameter(dbCommandWrapper, "@InterestLevelID", DbType.Int32, SetNullValue((_InterestLevelID == 0), _InterestLevelID));
 			db.AddInParameter(dbCommandWrapper, "@Reason", DbType.String, SetNullValue((_Reason == string.Empty), _Reason));
-			db.AddInParameter(dbCommandWrapper, "@Del", DbType.Boolean, SetNullValue((_Del == false), _Del));
+            db.AddInParameter(dbCommandWrapper, "@Del", DbType.Boolean, SetNullValue((_Del == true), _Del));
 
 			db.ExecuteNonQuery(dbCommandWrapper);
 			

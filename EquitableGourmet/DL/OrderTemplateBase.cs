@@ -35,7 +35,7 @@ using System.IO;
 using Microsoft.Practices.EnterpriseLibrary.Data;
 using System.Data.Common;
 
-namespace DL
+namespace EquitableGourmet
 {
 	public abstract class OrderTemplateBase
 	{
@@ -273,7 +273,7 @@ namespace DL
 			db.AddInParameter(dbCommandWrapper, "@OrderID", DbType.Int32, SetNullValue((_OrderID == 0), _OrderID));
 			db.AddInParameter(dbCommandWrapper, "@CreatedOn", DbType.DateTime, SetNullValue((_CreatedOn == DateTime.Parse("01/01/1900")), _CreatedOn));
 			db.AddInParameter(dbCommandWrapper, "@CreatedBy", DbType.Int32, SetNullValue((_CreatedBy == 0), _CreatedBy));
-			db.AddInParameter(dbCommandWrapper, "@Del", DbType.Boolean, SetNullValue((_Del == false), _Del));
+            db.AddInParameter(dbCommandWrapper, "@Del", DbType.Boolean, SetNullValue((_Del == true), _Del));
 
 			db.ExecuteNonQuery(dbCommandWrapper);
 			

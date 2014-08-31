@@ -7,7 +7,7 @@
     <ProjectGuid>{9E5958F3-4675-4B3A-B153-2F71FDB4AFA7}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>DL</RootNamespace>
+    <RootNamespace>EquitableGourmet</RootNamespace>
     <AssemblyName>DL</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
@@ -83,12 +83,12 @@
     <Compile Include="AspNetUserRolesBase.cs" />
     <Compile Include="AspNetUsers.cs" />
     <Compile Include="AspNetUsersBase.cs" />
+    <Compile Include="aspnet_Roles.cs" />
+    <Compile Include="aspnet_RolesBase.cs" />
     <Compile Include="City.cs" />
     <Compile Include="CityBase.cs" />
     <Compile Include="Company.cs" />
     <Compile Include="CompanyBase.cs" />
-    <Compile Include="ControlType.cs" />
-    <Compile Include="ControlTypeBase.cs" />
     <Compile Include="Country.cs" />
     <Compile Include="CountryBase.cs" />
     <Compile Include="District.cs" />
@@ -105,6 +105,8 @@
     <Compile Include="JobBase.cs" />
     <Compile Include="JobStatus.cs" />
     <Compile Include="JobStatusBase.cs" />
+    <Compile Include="Menu.cs" />
+    <Compile Include="MenuBase.cs" />
     <Compile Include="Order.cs" />
     <Compile Include="OrderBase.cs" />
     <Compile Include="OrderDetail.cs" />
@@ -115,6 +117,10 @@
     <Compile Include="OrderStatusBase.cs" />
     <Compile Include="OrderTemplate.cs" />
     <Compile Include="OrderTemplateBase.cs" />
+    <Compile Include="Page.cs" />
+    <Compile Include="PageBase.cs" />
+    <Compile Include="Pages.cs" />
+    <Compile Include="PagesBase.cs" />
     <Compile Include="PriceHistory.cs" />
     <Compile Include="PriceHistoryBase.cs" />
     <Compile Include="Product.cs" />
@@ -130,6 +136,8 @@
     <Compile Include="PromotionDetail.cs" />
     <Compile Include="PromotionDetailBase.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ResetPassword.cs" />
+    <Compile Include="ResetPasswordBase.cs" />
     <Compile Include="User.cs" />
     <Compile Include="UserBase.cs" />
     <Compile Include="UserPermissions.cs" />

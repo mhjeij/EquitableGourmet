@@ -35,7 +35,7 @@ using System.IO;
 using Microsoft.Practices.EnterpriseLibrary.Data;
 using System.Data.Common;
 
-namespace DL
+namespace EquitableGourmet
 {
 	public abstract class OrderBase
 	{
@@ -443,7 +443,7 @@ namespace DL
 			db.AddInParameter(dbCommandWrapper, "@CreatedBy", DbType.Int32, SetNullValue((_CreatedBy == 0), _CreatedBy));
 			db.AddInParameter(dbCommandWrapper, "@ModifiedOn", DbType.DateTime, SetNullValue((_ModifiedOn == DateTime.Parse("01/01/1900")), _ModifiedOn));
 			db.AddInParameter(dbCommandWrapper, "@ModifiedBy", DbType.Int32, SetNullValue((_ModifiedBy == 0), _ModifiedBy));
-			db.AddInParameter(dbCommandWrapper, "@Del", DbType.Boolean, SetNullValue((_Del == false), _Del));
+            db.AddInParameter(dbCommandWrapper, "@Del", DbType.Boolean, SetNullValue((_Del == true), _Del));
 
 			db.ExecuteNonQuery(dbCommandWrapper);
 			

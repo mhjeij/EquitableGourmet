@@ -35,14 +35,13 @@ using System.IO;
 using Microsoft.Practices.EnterpriseLibrary.Data;
 using System.Data.Common;
 
-namespace DL
+namespace EquitableGourmet
 {
 	public abstract class AccountStatusBase
 	{
 		#region < VARIABLES >
 		private int _AccountStatusID;
 		private string _Name;
-		private string _Description;
 		private bool _Del;
 		private bool _isNew;
 		#endregion
@@ -52,7 +51,6 @@ namespace DL
 		{
 			_AccountStatusID = 0;
 			_Name = string.Empty;
-			_Description = string.Empty;
 			_Del = false;
 		}
 		
@@ -61,31 +59,16 @@ namespace DL
 			_AccountStatusID = AccountStatusID;
 		}
 	
-		protected AccountStatusBase(int AccountStatusID, string Name, string Description, bool Del) : this()
+		protected AccountStatusBase(int AccountStatusID, string Name, bool Del) : this()
 		{
 			_AccountStatusID = AccountStatusID;
 			_Name = Name;
-			_Description = Description;
 			_Del = Del;
 		}
 
 		#endregion
 		
 		#region < Metodos para Obtención de Detalles >
-
-		public static DataTable GetByAccount(int AccountStatusID)
-		{
-			Database db = DatabaseFactory.CreateDatabase();
-            string sqlCommand = "Select * From AccountStatus Where AccountStatusID = @AccountStatusID";
-            DbCommand dbCommandWrapper = db.GetSqlStringCommand(sqlCommand);
-			db.AddInParameter(dbCommandWrapper, "@AccountStatusID", DbType.Int32, AccountStatusID);
-
-			DataTable t = db.ExecuteDataSet(dbCommandWrapper).Tables[0];
-			
-			t.Columns["AccountStatusID"].DefaultValue = AccountStatusID;
-
-            return t;
-		}
 
 		#endregion
 		
@@ -101,12 +84,6 @@ namespace DL
 		{
 			get	{ return _Name; }
 			set	{ _Name = value; }
-		}
-		
-		public string Description
-		{
-			get	{ return _Description; }
-			set	{ _Description = value; }
 		}
 		
 		public bool Del
@@ -170,7 +147,6 @@ namespace DL
 			#region Parametros de InsertCommand
 			db.AddOutParameter(da.InsertCommand, "@AccountStatusID", DbType.Int32, 4);
 			db.AddInParameter(da.InsertCommand, "@Name", DbType.String, "Name", DataRowVersion.Default);
-			db.AddInParameter(da.InsertCommand, "@Description", DbType.String, "Description", DataRowVersion.Default);
 			db.AddInParameter(da.InsertCommand, "@Del", DbType.Boolean, "Del", DataRowVersion.Default);
 
 			#endregion
@@ -178,7 +154,6 @@ namespace DL
 			#region Parametros de UpdateCommand
 			db.AddInParameter(da.UpdateCommand, "@AccountStatusID", DbType.Int32, "AccountStatusID", DataRowVersion.Default);
 			db.AddInParameter(da.UpdateCommand, "@Name", DbType.String, "Name", DataRowVersion.Default);
-			db.AddInParameter(da.UpdateCommand, "@Description", DbType.String, "Description", DataRowVersion.Default);
 			db.AddInParameter(da.UpdateCommand, "@Del", DbType.Boolean, "Del", DataRowVersion.Default);
 
 			#endregion
@@ -227,7 +202,6 @@ namespace DL
 			DataRow row = ds.Tables[0].Rows[0];
 			_AccountStatusID = (int)row["AccountStatusID"];
 			_Name = row.IsNull("Name") ? string.Empty : (string)row["Name"];
-			_Description = row.IsNull("Description") ? string.Empty : (string)row["Description"];
 			_Del = row.IsNull("Del") ? false : (bool)row["Del"];
 		}
 
@@ -259,8 +233,7 @@ namespace DL
 			// Add parameters
 			db.AddOutParameter(dbCommandWrapper, "@AccountStatusID", DbType.Int32, 4);
 			db.AddInParameter(dbCommandWrapper, "@Name", DbType.String, SetNullValue((_Name == string.Empty), _Name));
-			db.AddInParameter(dbCommandWrapper, "@Description", DbType.String, SetNullValue((_Description == string.Empty), _Description));
-			db.AddInParameter(dbCommandWrapper, "@Del", DbType.Boolean, SetNullValue((_Del == false), _Del));
+			db.AddInParameter(dbCommandWrapper, "@Del", DbType.Boolean, SetNullValue((_Del == true), _Del));
 
 			db.ExecuteNonQuery(dbCommandWrapper);
 			
@@ -289,7 +262,6 @@ namespace DL
 			// Add parameters
 			db.AddInParameter(dbCommandWrapper, "@AccountStatusID", DbType.Int32, _AccountStatusID);
 			db.AddInParameter(dbCommandWrapper, "@Name", DbType.String, SetNullValue((_Name == string.Empty), _Name));
-			db.AddInParameter(dbCommandWrapper, "@Description", DbType.String, SetNullValue((_Description == string.Empty), _Description));
 			db.AddInParameter(dbCommandWrapper, "@Del", DbType.Boolean, SetNullValue((_Del == false), _Del));
 
 			try

@@ -35,7 +35,7 @@ using System.IO;
 using Microsoft.Practices.EnterpriseLibrary.Data;
 using System.Data.Common;
 
-namespace DL
+namespace EquitableGourmet
 {
 	public abstract class CompanyBase
 	{
@@ -336,7 +336,7 @@ namespace DL
 			db.AddInParameter(dbCommandWrapper, "@Description", DbType.String, SetNullValue((_Description == string.Empty), _Description));
 			db.AddInParameter(dbCommandWrapper, "@CreateBy", DbType.Int32, SetNullValue((_CreateBy == 0), _CreateBy));
 			db.AddInParameter(dbCommandWrapper, "@CreateDate", DbType.DateTime, SetNullValue((_CreateDate == DateTime.Parse("01/01/1900")), _CreateDate));
-			db.AddInParameter(dbCommandWrapper, "@Del", DbType.Boolean, SetNullValue((_Del == false), _Del));
+            db.AddInParameter(dbCommandWrapper, "@Del", DbType.Boolean, SetNullValue((_Del == true), _Del));
 
 			db.ExecuteNonQuery(dbCommandWrapper);
 			

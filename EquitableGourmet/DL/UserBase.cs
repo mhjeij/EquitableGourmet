@@ -35,7 +35,7 @@ using System.IO;
 using Microsoft.Practices.EnterpriseLibrary.Data;
 using System.Data.Common;
 
-namespace DL
+namespace EquitableGourmet
 {
 	public abstract class UserBase
 	{
@@ -391,7 +391,7 @@ namespace DL
 			db.AddInParameter(dbCommandWrapper, "@CreatedOn", DbType.DateTime, SetNullValue((_CreatedOn == DateTime.Parse("01/01/1900")), _CreatedOn));
 			db.AddInParameter(dbCommandWrapper, "@LastLogin", DbType.DateTime, SetNullValue((_LastLogin == DateTime.Parse("01/01/1900")), _LastLogin));
 			db.AddInParameter(dbCommandWrapper, "@UserStatusID", DbType.Int32, SetNullValue((_UserStatusID == 0), _UserStatusID));
-			db.AddInParameter(dbCommandWrapper, "@Del", DbType.Boolean, SetNullValue((_Del == false), _Del));
+            db.AddInParameter(dbCommandWrapper, "@Del", DbType.Boolean, SetNullValue((_Del == true), _Del));
 
 			db.ExecuteNonQuery(dbCommandWrapper);
 			

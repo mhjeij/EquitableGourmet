@@ -35,7 +35,7 @@ using System.IO;
 using Microsoft.Practices.EnterpriseLibrary.Data;
 using System.Data.Common;
 
-namespace DL
+namespace EquitableGourmet
 {
 	public abstract class AddressBase
 	{
@@ -394,7 +394,7 @@ namespace DL
 			db.AddInParameter(dbCommandWrapper, "@Building", DbType.String, SetNullValue((_Building == string.Empty), _Building));
 			db.AddInParameter(dbCommandWrapper, "@AccountID", DbType.Int32, SetNullValue((_AccountID == 0), _AccountID));
 			db.AddInParameter(dbCommandWrapper, "@AddressTypeID", DbType.Int32, SetNullValue((_AddressTypeID == 0), _AddressTypeID));
-			db.AddInParameter(dbCommandWrapper, "@Del", DbType.Boolean, SetNullValue((_Del == false), _Del));
+            db.AddInParameter(dbCommandWrapper, "@Del", DbType.Boolean, SetNullValue((_Del == true), _Del));
 
 			db.ExecuteNonQuery(dbCommandWrapper);
 			

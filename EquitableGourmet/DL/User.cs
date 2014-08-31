@@ -6,7 +6,7 @@ using System.Data.Common;
 using System.Data;
 using Microsoft.Practices.EnterpriseLibrary.Data;
 
-namespace DL
+namespace EquitableGourmet
 {
 	public class User : UserBase
 	{
@@ -15,9 +15,38 @@ namespace DL
 		public User() : base()	{}
 		
 		#endregion
-		
-		
-		
-		// TODO: Agregue Código Adicional Aqui.
+
+
+
+        public static DataTable Authenticate(String username, String password)
+        {
+            Database db = DatabaseFactory.CreateDatabase();
+            string sqlCommand = "Authenticate";
+            DbCommand dbCommandWrapper = db.GetStoredProcCommand(sqlCommand);
+            db.AddInParameter(dbCommandWrapper, "@username", DbType.String, username);
+            db.AddInParameter(dbCommandWrapper, "@password", DbType.String, password);
+            DataSet ds = db.ExecuteDataSet(dbCommandWrapper);
+
+            DataTable dt = ds.Tables[0];
+
+            return dt;
+
+        }
+
+        public static DataTable UserExists(String username)
+        {
+            Database db = DatabaseFactory.CreateDatabase();
+            string sqlCommand = "UserExists";
+            DbCommand dbCommandWrapper = db.GetStoredProcCommand(sqlCommand);
+            db.AddInParameter(dbCommandWrapper, "@username", DbType.String, username);
+            DataSet ds = db.ExecuteDataSet(dbCommandWrapper);
+
+            DataTable dt = ds.Tables[0];
+
+            return dt;
+            
+
+        }
+
 	}
 }

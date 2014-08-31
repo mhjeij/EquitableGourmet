@@ -35,7 +35,7 @@ using System.IO;
 using Microsoft.Practices.EnterpriseLibrary.Data;
 using System.Data.Common;
 
-namespace DL
+namespace EquitableGourmet
 {
 	public abstract class OrderDetailBase
 	{
@@ -339,7 +339,7 @@ namespace DL
 			db.AddInParameter(dbCommandWrapper, "@Discount", DbType.Double, SetNullValue((_Discount == 0), _Discount));
 			db.AddInParameter(dbCommandWrapper, "@Tax", DbType.Double, SetNullValue((_Tax == 0), _Tax));
 			db.AddInParameter(dbCommandWrapper, "@Total", DbType.Double, SetNullValue((_Total == 0), _Total));
-			db.AddInParameter(dbCommandWrapper, "@Del", DbType.Boolean, SetNullValue((_Del == false), _Del));
+            db.AddInParameter(dbCommandWrapper, "@Del", DbType.Boolean, SetNullValue((_Del == true), _Del));
 
 			db.ExecuteNonQuery(dbCommandWrapper);
 			

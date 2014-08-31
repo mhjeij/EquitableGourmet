@@ -35,7 +35,7 @@ using System.IO;
 using Microsoft.Practices.EnterpriseLibrary.Data;
 using System.Data.Common;
 
-namespace DL
+namespace EquitableGourmet
 {
 	public abstract class PriceHistoryBase
 	{
@@ -286,7 +286,7 @@ namespace DL
 			db.AddInParameter(dbCommandWrapper, "@PreviousPrice", DbType.Double, SetNullValue((_PreviousPrice == 0), _PreviousPrice));
 			db.AddInParameter(dbCommandWrapper, "@CurrentPrice", DbType.Double, SetNullValue((_CurrentPrice == 0), _CurrentPrice));
 			db.AddInParameter(dbCommandWrapper, "@CreatedOn", DbType.DateTime, SetNullValue((_CreatedOn == DateTime.Parse("01/01/1900")), _CreatedOn));
-			db.AddInParameter(dbCommandWrapper, "@Del", DbType.Boolean, SetNullValue((_Del == false), _Del));
+            db.AddInParameter(dbCommandWrapper, "@Del", DbType.Boolean, SetNullValue((_Del == true), _Del));
 
 			db.ExecuteNonQuery(dbCommandWrapper);
 			

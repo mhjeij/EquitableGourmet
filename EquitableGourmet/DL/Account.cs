@@ -6,7 +6,7 @@ using System.Data.Common;
 using System.Data;
 using Microsoft.Practices.EnterpriseLibrary.Data;
 
-namespace DL
+namespace EquitableGourmet
 {
 	public class Account : AccountBase
 	{
@@ -15,9 +15,22 @@ namespace DL
 		public Account() : base()	{}
 		
 		#endregion
-		
-		
-		
-		// TODO: Agregue Código Adicional Aqui.
+
+
+
+        public static DataTable AccountExists(String marigoldnumber)
+        {
+            Database db = DatabaseFactory.CreateDatabase();
+            string sqlCommand = "AccountExists";
+            DbCommand dbCommandWrapper = db.GetStoredProcCommand(sqlCommand);
+            db.AddInParameter(dbCommandWrapper, "@MarigoldNumber", DbType.String, marigoldnumber);
+            DataSet ds = db.ExecuteDataSet(dbCommandWrapper);
+
+            DataTable dt = ds.Tables[0];
+
+            return dt;
+
+
+        }
 	}
 }

@@ -35,7 +35,7 @@ using System.IO;
 using Microsoft.Practices.EnterpriseLibrary.Data;
 using System.Data.Common;
 
-namespace DL
+namespace EquitableGourmet
 {
 	public abstract class UserStatusBase
 	{
@@ -96,6 +96,7 @@ namespace DL
 		{
 			get 
 			{ 
+				_isNew = (_UserStatusID == 0);
 				return _isNew; 
 			}
 			set { _isNew = value; }
@@ -144,7 +145,7 @@ namespace DL
             da.DeleteCommand = db.GetStoredProcCommand("daab_DeleteUserStatus");
 			
 			#region Parametros de InsertCommand
-			db.AddInParameter(da.InsertCommand, "@UserStatusID", DbType.Int32, "UserStatusID", DataRowVersion.Default);
+			db.AddOutParameter(da.InsertCommand, "@UserStatusID", DbType.Int32, 4);
 			db.AddInParameter(da.InsertCommand, "@Name", DbType.String, "Name", DataRowVersion.Default);
 			db.AddInParameter(da.InsertCommand, "@Del", DbType.Boolean, "Del", DataRowVersion.Default);
 
@@ -230,11 +231,17 @@ namespace DL
 			DbCommand dbCommandWrapper = db.GetStoredProcCommand(sqlCommand);
 
 			// Add parameters
-			db.AddInParameter(dbCommandWrapper, "@UserStatusID", DbType.Int32, _UserStatusID);
+			db.AddOutParameter(dbCommandWrapper, "@UserStatusID", DbType.Int32, 4);
 			db.AddInParameter(dbCommandWrapper, "@Name", DbType.String, SetNullValue((_Name == string.Empty), _Name));
-			db.AddInParameter(dbCommandWrapper, "@Del", DbType.Boolean, SetNullValue((_Del == false), _Del));
+            db.AddInParameter(dbCommandWrapper, "@Del", DbType.Boolean, SetNullValue((_Del == true), _Del));
 
 			db.ExecuteNonQuery(dbCommandWrapper);
+			
+			// Save output parameter values
+			object param;
+			param = db.GetParameterValue(dbCommandWrapper, "@UserStatusID");
+			if (param == DBNull.Value) return false;
+			_UserStatusID = (int)param;
 			
 			return true;
 		}
@@ -260,6 +267,12 @@ namespace DL
 			try
 			{
 				db.ExecuteNonQuery(dbCommandWrapper);
+				
+				// Save output parameter values
+				object param;
+				param = db.GetParameterValue(dbCommandWrapper, "@UserStatusID");
+				if (param == DBNull.Value) return false;
+				_UserStatusID = (int)param;
 				
 				return true;
 			}

@@ -35,7 +35,7 @@ using System.IO;
 using Microsoft.Practices.EnterpriseLibrary.Data;
 using System.Data.Common;
 
-namespace DL
+namespace EquitableGourmet
 {
 	public abstract class ProductBase
 	{
@@ -430,7 +430,7 @@ namespace DL
 			db.AddInParameter(dbCommandWrapper, "@ProductBrandID", DbType.Int32, SetNullValue((_ProductBrandID == 0), _ProductBrandID));
 			db.AddInParameter(dbCommandWrapper, "@ParentProductID", DbType.Int32, SetNullValue((_ParentProductID == 0), _ParentProductID));
 			db.AddInParameter(dbCommandWrapper, "@ShelfLifePerMonth", DbType.Int32, SetNullValue((_ShelfLifePerMonth == 0), _ShelfLifePerMonth));
-			db.AddInParameter(dbCommandWrapper, "@Del", DbType.Boolean, SetNullValue((_Del == false), _Del));
+            db.AddInParameter(dbCommandWrapper, "@Del", DbType.Boolean, SetNullValue((_Del == true), _Del));
 
 			db.ExecuteNonQuery(dbCommandWrapper);
 			

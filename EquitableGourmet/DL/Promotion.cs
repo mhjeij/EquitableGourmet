@@ -6,7 +6,7 @@ using System.Data.Common;
 using System.Data;
 using Microsoft.Practices.EnterpriseLibrary.Data;
 
-namespace DL
+namespace EquitableGourmet
 {
 	public class Promotion : PromotionBase
 	{
